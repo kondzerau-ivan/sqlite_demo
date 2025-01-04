@@ -6,14 +6,11 @@ function createDbConnection() {
     if (fs.existsSync(filepath)) return new sqlite3.Database(filepath);
 
     const db = new sqlite3.Database(filepath, (error) => {
-        if (error) {
-            return console.error(error.message);
-        }
+        if (error) return console.error(error.message);
         createTable(db);
     });
 
-    console.log("Connection with SQLite has been established");
-    
+    console.info("Connection with SQLite has been established!");
     return db;
 }
 
